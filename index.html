@@ -15,7 +15,12 @@
     </div>
     <div id="app-writepad">
       <h1>WritePad</h1>
-      
+      <textarea id="note">
+      </textarea>
+      <div>
+        <button type="button" class="btn btn-sucess" onclick="saveNote($('#note'))">Save</button>
+        <button type="button" class="btn btn-secondary" onclick="openNote($('#note'))">Open note</button>
+      </div>
     </div>
     <script>
       $(document).ready(function() {
@@ -26,6 +31,18 @@
       function openWritePad() {
         $('#app-writepad').show()
         $('#open-application').hide()
+      }
+      function saveNote(element) {
+        localStorage.setItem("note", element.value)
+        alert("Saved note!")
+      }
+      function openNote(element) {
+        if localStorage.getItem("note") {
+          element.value = localStorage.getItem("note")
+          alert("Opened note!")
+        } else {
+          alert("Opening note failed.")
+        }
       }
     </script>
   </body>
